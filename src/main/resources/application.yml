@@ -1,0 +1,29 @@
+server:
+  port: 2222
+
+spring:
+  application:
+    name: mybatis-mysql-test
+  profiles:
+    active: local #默认配置文件,方便本地ide调试
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    # 配置监控统计拦截的filters
+    filters: stat,wall,slf4j
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.slowSqlMillis=3000
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+#开启驼峰命名转换
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+#对于一般的getAllIfColumnNode，是否判断!=''，默认不判断
+#tkmybatis自带的select查询只会判断字段是否!=null,不会判断是否非空字符串，对接口传参造成不便
+mapper:
+  not-empty: true
+
+
