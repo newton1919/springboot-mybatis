@@ -30,4 +30,10 @@ public class TransactionTimeout {
     queryObj.setName("caijunhua");
     yxyTestMapper.updateByPrimaryKeySelective(queryObj);
   }
+
+  @Transactional
+  public void selectForUpdate() throws Exception{
+    jdbcTemplate.queryForRowSet("select * from yxy_test where id=1 for update ");
+    Thread.sleep(20000);
+  }
 }

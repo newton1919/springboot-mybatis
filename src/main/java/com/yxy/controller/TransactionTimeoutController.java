@@ -21,4 +21,16 @@ public class TransactionTimeoutController {
     functionService.timeoutTest();
     return restResponse;
   }
+
+  /**
+   * select for update语句也会上锁，直到事务提交才会释放锁
+   * @return
+   * @throws Exception
+   */
+  @GetMapping("/selectForUpdate")
+  public RestResponse selectForUpdate() throws Exception {
+    RestResponse restResponse = new RestResponse(200, "");
+    functionService.selectForUpdate();
+    return restResponse;
+  }
 }
