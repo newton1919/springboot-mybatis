@@ -32,7 +32,7 @@ public class FieldNoGenerator {
    * @return
    */
   @Transactional(propagation = Propagation.REQUIRES_NEW)
-  public String generator(String param, String number,String flag) throws BusinessException {
+  public String generator(String param, String number,String flag) throws Exception {
     Map<String, Object> clNo = null;
     try {
       clNo = getNo(param, number, flag);
@@ -47,6 +47,8 @@ public class FieldNoGenerator {
     int len = hi.length();
     StringBuilder noSb = new StringBuilder(no);
     noSb.replace(noSb.length() - len,noSb.length(),hi);
+
+    //Thread.sleep(12000);
     return noSb.toString().toUpperCase();
   }
 

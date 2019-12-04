@@ -23,11 +23,14 @@ public class Common2Controller {
 
   @GetMapping("/testNoGenerator")
   @Transactional(rollbackFor = Exception.class)
-  public RestResponse testNoGenerator() throws BusinessException {
+  public RestResponse testNoGenerator() throws Exception {
+    System.err.println("start testNoGenerator...");
     RestResponse restResponse = new RestResponse(200, "");
     String no = fieldNoGenerator.generator("qq", "00000", "_");
     System.err.println("generator no ----->" + no);
     restResponse.setContent(no);
+    //模拟主业务流程
+    jdbcTemplate.update("update yxy_test set name='yxy' where id=1");
     return restResponse;
   }
 
@@ -39,6 +42,13 @@ public class Common2Controller {
     System.err.println("count ----->" + count);
     Thread.sleep(10000);
     restResponse.setContent(count);
+    return restResponse;
+  }
+
+  @GetMapping("/hello")
+  public RestResponse sayHello() throws Exception {
+    RestResponse restResponse = new RestResponse(200, "");
+    restResponse.setContent("hello world!!!");
     return restResponse;
   }
 }
