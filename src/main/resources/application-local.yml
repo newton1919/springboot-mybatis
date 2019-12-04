@@ -8,3 +8,4 @@ spring:
       test-on-return: true
       test-while-idle: true
       validation-query: 'select 1 from dual'
+      max-active: 80

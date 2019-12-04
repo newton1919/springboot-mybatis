@@ -48,7 +48,7 @@ public class FieldNoGenerator {
     StringBuilder noSb = new StringBuilder(no);
     noSb.replace(noSb.length() - len,noSb.length(),hi);
 
-    //Thread.sleep(12000);
+    //Thread.sleep(2000);
     return noSb.toString().toUpperCase();
   }
 
