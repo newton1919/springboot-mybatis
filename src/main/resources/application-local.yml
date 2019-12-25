@@ -9,3 +9,8 @@ spring:
       test-while-idle: true
       validation-query: 'select 1 from dual'
       max-active: 80
+
+logging:
+  level:
+    root: info
+    org.springframework.jdbc.datasource.DataSourceTransactionManager: debug

@@ -45,6 +45,18 @@ public class Common2Controller {
     return restResponse;
   }
 
+  @GetMapping("/testLocks")
+  @Transactional(rollbackFor = Exception.class)
+  public RestResponse testLocks() throws Exception {
+    RestResponse restResponse = new RestResponse(200, "");
+    jdbcTemplate.update("update yxy_test set name='yxy5' where id=1");
+    Thread.sleep(20000);
+    jdbcTemplate.update("update yxy_test set name='yxy5' where id=3");
+    Thread.sleep(20000);
+    restResponse.setContent("testLocks!!!");
+    return restResponse;
+  }
+
   @GetMapping("/hello")
   public RestResponse sayHello() throws Exception {
     RestResponse restResponse = new RestResponse(200, "");
